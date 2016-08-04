@@ -37,7 +37,9 @@ class View extends React.Component {
             <div className={this.state.isEditor ? "" : "hidden"}>
                 <Editor onAdd={this.addElement.bind(this)} elements={this.state.elements} onDelete={this.deleteElement.bind(this)}/>
             </div>
-            <div className={this.state.isEditor ? "hidden" : ""}><Preview /></div>
+            <div className={this.state.isEditor ? "hidden" : ""}>
+                <Preview elements={this.state.elements}/>
+            </div>
         </div>;
     }
 }
@@ -85,8 +87,14 @@ class RightButton extends React.Component {
 
 class Preview extends React.Component {
     render() {
+        const elements = this.props.elements.map((elements, index) => {
+            return <div key={index}>
+                <input type={elements}/>
+            </div>;
+        });
+
         return <div>
-            Preview
+            {elements}
         </div>
     }
 }
