@@ -38,7 +38,7 @@ class View extends React.Component {
                 <Editor onAdd={this.addElement.bind(this)} elements={this.state.elements} onDelete={this.deleteElement.bind(this)}/>
             </div>
             <div className={this.state.isEditor ? "hidden" : ""}>
-                <Preview />
+                <Preview elements={this.state.elements}/>
             </div>
         </div>;
     }
@@ -88,8 +88,15 @@ class LeftPanel extends React.Component {
 
 class Preview extends React.Component {
     render() {
+        const elements = this.props.elements.map((element , index) => {
+            return <div key={index}>
+                <input type={element}/>
+            </div>;
+        })
+
         return <div>
-            Preview
+            {elements}
+            <button>Sumbit</button>
         </div>
     }
 }
